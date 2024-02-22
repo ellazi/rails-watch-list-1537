@@ -1,10 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+require 'json'
+require 'open-uri'
 require 'faker'
 
 # Clean database
@@ -16,26 +11,37 @@ List.destroy_all
 # Creating movies
 puts "Creating movies..."
 
-10.times do |movie|
-  movie = Movie.create(
-    title: Faker::Movie.title,
-    overview: Faker::Lorem.paragraphs(number: 2).join("\n"),
-    poster_url: Faker::Internet.url,
-    rating: rand(1.0..10.0).round(1)
+response = URI.open 'http://tmdb.lewagon.com/movie/top_rated?'
+movies = JSON.parse(response.read)
+
+movies["results"].each do |movie|
+  Movie.create!(
+    title: movie["title"],
+    overview: movie["overview"],
+    poster_url: "https://image.tmdb.org/t/p/w500#{movie["poster_path"]}",
+    rating: movie["vote_average"]
   )
-  movie.save!
 end
+
+# 10.times do |movie|
+#   movie = Movie.create(
+#     title: Faker::Movie.title,
+#     overview: Faker::Lorem.paragraphs(number: 2).join("\n"),
+#     poster_url: Faker::Internet.url,
+#     rating: rand(1.0..10.0).round(1)
+#   )
+#   movie.save!
+# end
 
 puts "Movies created!"
 
 # Creating lists
 puts "Creates lists..."
 
-5.times do |list|
+10.times do |list|
   list = List.create(
     name: Faker::Book.title,
   )
-  list.save!
 end
 
 puts "Lists created!"

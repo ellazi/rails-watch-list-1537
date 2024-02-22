@@ -9,6 +9,9 @@
   align-items: center;
   justify-content: center;
   padding: 10px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   a {
     color: white;
     text-decoration: none;
@@ -23,12 +26,18 @@
 }
 
 .bookmark-card {
-  width: calc(100%/3 - 30px);
+  width: 100%;
   height: fit-content;
-  min-height: 400px;
-  padding: 20px;
+  height: 500px;
   border: 1px solid black;
   border-radius: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .text {
+    padding: 30px;
+    // width: calc(100%);
+  }
   a {
     color: $red;
   }
@@ -36,5 +45,14 @@
     color:black;
     text-decoration: none;
     text-shadow: none !important;
+  }
+  // .image {
+  //   width: 40%;
+  //   height: 100%;
+  //   text-align: right;
+  // }
+  img {
+    height: 100%;
+    object-fit: contain;
   }
 }

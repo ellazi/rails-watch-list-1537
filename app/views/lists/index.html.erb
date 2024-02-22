@@ -6,7 +6,8 @@
   <div class="card-flex-container">
     <% @lists.each do |list| %>
     <a href="<%= list_path(list) %>">
-      <div class="list-card">
+      <div class="list-card" style="background-image: linear-gradient(rgba(0, 0, 0, 0.4),
+  rgba(0, 0, 0, 0.4)), url('<%= list.bookmarks.last.movie.poster_url %>')">
         <h5><%= list.name %></h5>
       </div>
     </a>
