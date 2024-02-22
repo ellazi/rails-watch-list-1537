@@ -1,14 +1,20 @@
 <div class="container">
+  <div class="navbar-list">
+    <%= link_to "+ bookmark", new_list_bookmark_path(@list) %>
+  </div>
   <h1><%= @list.name %></h1>
-  <% @list.bookmarks.each do |bookmark| %>
-    <p><%= bookmark.comment %></p>
-    <p><%= bookmark.movie.title %></p>
-    <p><%= bookmark.movie.overview %></p>
-    <p><%= bookmark.movie.rating %></p>
-    <p><%= bookmark.movie.poster_url %></p>
-    <p><%= link_to "Delete", list_bookmark_path(@list, bookmark),
-      data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
-  <% end %>
-  <%= link_to "Go back to all lists", lists_path %>
-  <%= link_to "Add a bookmark", new_list_bookmark_path(@list) %>
+  <div class="card-flex-container">
+    <% @list.bookmarks.each do |bookmark| %>
+    <div class="bookmark-card">
+      <p style="height: 100px;"><%= bookmark.comment %></p>
+      <h5><%= bookmark.movie.title %></h5>
+      <p><%= bookmark.movie.overview %></p>
+      <h6><%= bookmark.movie.rating %></h6>
+      <p><%= bookmark.movie.poster_url %></p>
+      <a href="<%= list_bookmark_path(@list, bookmark) %>" data-turbo-method="delete" data-turbo-confirm="Are you sure?">
+        <i class="fa-solid fa-trash-can"></i>
+      </a>
+    </div>
+    <% end %>
+  </div>
 </div>

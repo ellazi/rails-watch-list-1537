@@ -5,9 +5,11 @@
 <div class="container">
   <div class="card-flex-container">
     <% @lists.each do |list| %>
-    <div class="list-card">
-      <h5><%= link_to list.name, list_path(list) %></h5>
-    </div>
+    <a href="<%= list_path(list) %>">
+      <div class="list-card">
+        <h5><%= list.name %></h5>
+      </div>
+    </a>
     <% end %>
   </div>
 </div>

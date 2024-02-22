@@ -21,11 +21,28 @@
   padding: 0 70px;
   color: #fff;
   a {
-    color: #fff;
+    color: #e1eb90;
     text-decoration: none;
     font-family: "Archivo Black", sans-serif;
   }
   a:hover {
-    color: rgb(170, 170, 170);
+    color: #fff;
+  }
+}
+
+.navbar-list {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-end;
+  align-items: center;
+  a {
+    color: #b0bc52;
+    text-decoration: none;
+    font-family: "Archivo Black", sans-serif;
+  }
+  a:hover {
+    color: #000000;
   }
 }
